@@ -1,6 +1,6 @@
 def call(config) {
     try {
-          setEnv() //This is for initial setup.
+          //setEnv() //This is for initial setup.
 				  println "============================ BUILD MAVEN START ===================================="
           sh "mvn clean install"
 
