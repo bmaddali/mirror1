@@ -23,12 +23,11 @@ def notifyDeveloperBySlack(String buildStatus, String toChannel){
 }//end notifyDeveloperBySlack
 
 def notifyPromoterBySlack(String toChannel, String toApprover){
-  def colorCode = '#FF0000' //RED
-  def summary = "Deployment Approval for : `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}input"
+  def summary = "Deployment to Production requires approval from ${toApprover} for `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}input"
 
   try {
     // Send slack notifications all messages
-    slackSend (color: colorCode, message: summary, channel: toChannel)
+    slackSend (message: summary, channel: toChannel)
     input (message: "Deployment Approval?", ok: 'Approve', submitter: "${toApprover}", submitterParameter: 'submitter')
   } catch (e) {
     echo "Failed to send Slack notification : ${e}"
