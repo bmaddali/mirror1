@@ -24,7 +24,7 @@ def notifyDeveloperBySlack(String buildStatus, String toChannel){
 
 def notifyPromoterBySlack(String toChannel, String toApprover){
   def colorCode = '#FF0000' //RED
-  def summary = "Deployment Approval for : `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}\\input"
+  def summary = "Deployment Approval for : `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}input"
 
   try {
     // Send slack notifications all messages
