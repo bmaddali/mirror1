@@ -7,7 +7,7 @@ def notifyDeveloperBySlack(String buildStatus, String toChannel){
     if (buildStatus == 'STARTED' || buildStatus == 'UNSTABLE') {
     colorCode = '#FFFF00'
     // YELLOW
-    } else if (buildStatus == 'SUCCESSFUL') {
+    } else if (buildStatus == 'SUCCESS') {
     colorCode = '#00FF00'
     // GREEN
     } else {
