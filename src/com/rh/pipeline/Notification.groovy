@@ -26,7 +26,7 @@ def notifyPromoterBySlack(String buildStatus, String toChannel, String toApprove
   // build status of null means successful
   buildStatus = buildStatus ?: 'STARTED'
   def colorCode = '#FF0000'
-  def summary = "Deployment Approval for : `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
+  def summary = "Deployment Approval for : `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}\input"
 
   try {
     if (buildStatus == 'STARTED' || buildStatus == 'UNSTABLE') {
