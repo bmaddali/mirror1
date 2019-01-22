@@ -1,3 +1,5 @@
+package com.rh.pipeline
+
 def notifyDeveloperBySlack(String buildStatus, String toChannel){
   // build status of null means successful
   buildStatus = buildStatus ?: 'STARTED'
