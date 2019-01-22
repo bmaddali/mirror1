@@ -1,6 +1,6 @@
 package com.rh.pipeline
 
-class Deployments {
+class Deployment{
 
     private String kubectl_contex_name
     private String deploy_release_name
