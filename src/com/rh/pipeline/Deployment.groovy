@@ -1,5 +1,6 @@
 package com.rh.pipeline
 
+/*
 class Deployment{
 
     private String kubectl_contex_name
@@ -9,8 +10,8 @@ class Deployment{
     private String cluster_domain
     private String service_release_name
     private String helm_config_yaml
-
-    def deployApplication(kubectl_contex_name, deploy_release_name,  tiller_namespace, helm_config_yaml, image_version) {
+*/
+    def deployApplication(String kubectl_contex_name, String deploy_release_name,  String tiller_namespace, String helm_config_yaml, String image_version) {
 
         sh """\
             #!/bin/bash
@@ -25,7 +26,7 @@ class Deployment{
         sleep(time:120,unit:"SECONDS")
     }
 
-    def deployService(kubelet_context_name, service_release_name, tiller_namespace, helm_config_yaml, cluster_domain) {
+    def deployService(String kubelet_context_name, String service_release_name, String tiller_namespace, String helm_config_yaml, String cluster_domain) {
         sh """\
             #!/bin/bash
             set -ex
@@ -38,4 +39,4 @@ class Deployment{
         sleep(time:75,unit:"SECONDS")
     }
 
-}// end class
+// }// end class
