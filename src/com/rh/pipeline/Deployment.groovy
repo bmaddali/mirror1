@@ -1,7 +1,7 @@
 package com.rh.pipeline
+
 import com.rh.pipeline.Notification
 
-def notifyUtils = new Notification()
 /*
 class Deployment{
 
@@ -15,6 +15,7 @@ class Deployment{
 */  
 
     def deployApplication(String deploy_env="nonprod", String kubectl_contex_name, String deploy_release_name,  String tiller_namespace, String helm_config_yaml, String image_version) {
+        def notifyUtils = new Notification()
         if (deploy_env == "production" || deploy_env == "prodpci"){
             notifyUtils.notifyPromoterBySlack("#jenkins-ci-prod", "bmaddali,jedwards")
             input (message: "Deployment Approval?", ok: 'Approve', submitter: "bmaddali,jedwards", submitterParameter: 'submitter')
@@ -35,6 +36,7 @@ class Deployment{
     }
 
     def deployService(String deploy_env="nonprod", String kubelet_context_name, String service_release_name, String tiller_namespace, String helm_config_yaml, String cluster_domain) {
+        def notifyUtils = new Notification()
         if (deploy_env == "production" || deploy_env == "prodpci"){
             notifyUtils.notifyPromoterBySlack("#jenkins-ci-prod", "bmaddali,jedwards")
             input (message: "Deployment Approval?", ok: 'Approve', submitter: "bmaddali,jedwards", submitterParameter: 'submitter')
