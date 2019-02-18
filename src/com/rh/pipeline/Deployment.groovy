@@ -16,7 +16,7 @@ class Deployment{
 
     def deployApplication(String deploy_env="nonprod", String kubectl_contex_name, String deploy_release_name,  String tiller_namespace, String helm_config_yaml, String image_version) {
         if (deploy_env == "production" || deploy_env == "prodpci"){
-            notificationUtils.notifyPromoterBySlack("#jenkins-ci-prod", "bmaddali,jedwards")
+            notifyUtils.notifyPromoterBySlack("#jenkins-ci-prod", "bmaddali,jedwards")
             input (message: "Deployment Approval?", ok: 'Approve', submitter: "bmaddali,jedwards", submitterParameter: 'submitter')
         } else {
             echo "Approval isn't required!!"
@@ -36,7 +36,7 @@ class Deployment{
 
     def deployService(String deploy_env="nonprod", String kubelet_context_name, String service_release_name, String tiller_namespace, String helm_config_yaml, String cluster_domain) {
         if (deploy_env == "production" || deploy_env == "prodpci"){
-            notificationUtils.notifyPromoterBySlack("#jenkins-ci-prod", "bmaddali,jedwards")
+            notifyUtils.notifyPromoterBySlack("#jenkins-ci-prod", "bmaddali,jedwards")
             input (message: "Deployment Approval?", ok: 'Approve', submitter: "bmaddali,jedwards", submitterParameter: 'submitter')
         } else {
             echo "Approval isn't required!!"
