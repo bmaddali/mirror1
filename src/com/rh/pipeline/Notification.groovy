@@ -30,7 +30,6 @@ def notifyPromoterBySlack(String toChannel, String toApprover){
   try {
     // Send slack notifications all messages
     slackSend (message: summary, channel: toChannel)
-    input (message: "Deployment Approval?", ok: 'Approve', submitter: "${toApprover}", submitterParameter: 'submitter')
   } catch (e) {
     echo "Failed to send Slack notification : ${e}"
     throw e

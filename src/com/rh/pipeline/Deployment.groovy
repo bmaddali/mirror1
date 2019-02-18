@@ -1,5 +1,7 @@
 package com.rh.pipeline
+import com.rh.pipeline.Notification
 
+def notifyUtils = new Notification()
 /*
 class Deployment{
 
@@ -10,9 +12,15 @@ class Deployment{
     private String cluster_domain
     private String service_release_name
     private String helm_config_yaml
-*/
-    def deployApplication(String kubectl_contex_name, String deploy_release_name,  String tiller_namespace, String helm_config_yaml, String image_version) {
+*/  
 
+    def deployApplication(String deploy_env="nonprod", String kubectl_contex_name, String deploy_release_name,  String tiller_namespace, String helm_config_yaml, String image_version) {
+        if (deploy_env == "production" || deploy_env == "prodpci"){
+            notificationUtils.notifyPromoterBySlack("#jenkins-ci-prod", "bmaddali,jedwards")
+            input (message: "Deployment Approval?", ok: 'Approve', submitter: "bmaddali,jedwards", submitterParameter: 'submitter')
+        } else {
+            echo "Approval isn't required!!"
+        }
         sh """\
             #!/bin/bash
             set -ex
@@ -26,7 +34,13 @@ class Deployment{
         sleep(time:120,unit:"SECONDS")
     }
 
-    def deployService(String kubelet_context_name, String service_release_name, String tiller_namespace, String helm_config_yaml, String cluster_domain) {
+    def deployService(String deploy_env="nonprod", String kubelet_context_name, String service_release_name, String tiller_namespace, String helm_config_yaml, String cluster_domain) {
+        if (deploy_env == "production" || deploy_env == "prodpci"){
+            notificationUtils.notifyPromoterBySlack("#jenkins-ci-prod", "bmaddali,jedwards")
+            input (message: "Deployment Approval?", ok: 'Approve', submitter: "bmaddali,jedwards", submitterParameter: 'submitter')
+        } else {
+            echo "Approval isn't required!!"
+        }
         sh """\
             #!/bin/bash
             set -ex
