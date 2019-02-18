@@ -1,5 +1,6 @@
 package com.rh.pipeline
 
+/*
 class CodeQuality {
 
     static def runSonarScan(script, args){
@@ -9,5 +10,13 @@ class CodeQuality {
         } catch(err) {
             throw(err)
         }
+    }
+}
+*/
+
+def sonarScan(args){
+    def scannerHome = tool 'sonar'
+    withSonarQubeEnv('RH-SonarQube') {
+        sh "${scannerHome}/bin/sonar-scanner -X ${args}"
     }
 }
