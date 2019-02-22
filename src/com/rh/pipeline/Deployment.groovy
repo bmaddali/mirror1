@@ -15,7 +15,7 @@ class Deployment{
     private String helm_config_yaml
 */
 
-    def deployApplication(String aws_account_number, string deploy_env="nonprod", String kubectl_contex_name, String deploy_release_name,  String tiller_namespace, String helm_config_yaml, String image_version) {
+    def deployApplication(String aws_account_number, String deploy_env="nonprod", String kubectl_contex_name, String deploy_release_name,  String tiller_namespace, String helm_config_yaml, String image_version) {
         def notifyUtils = new Notification()
         if (deploy_env == "production" || deploy_env == "prodpci"){
             notifyUtils.notifyPromoterBySlack("#jenkins-ci-prod", "bmaddali,jedwards")
