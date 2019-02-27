@@ -10,7 +10,7 @@ class Docker {
 
     def publishAppImage(appGroup, appName, imageTag){
 
-      if (!appGroup) && (!appName) && (!imageTag)  throw new IllegalArgumentException("Error Missing Parameters, it can not be null or empty.")
+      //if (!appGroup) && (!appName) && (!imageTag)  throw new IllegalArgumentException("Error Missing Parameters, it can not be null or empty.")
 
         try {
             docker.withRegistry(dockerRegistry, registryUser) {
