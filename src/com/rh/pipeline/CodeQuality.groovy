@@ -8,7 +8,7 @@ class CodeQuality implements Serializable {
         this.steps = steps
     }
 
-    def scanWithSonar(String sonarSourcePath,String productName, String jacocoReportPath = "None", String appVersion) {
+    def scanWithSonar(String productName, String appVersion) {
         //if (!sonarSourcePath) && (!productName) && (!appVersion) throw new IllegalArgumentException("Error Missing Parameters, it can not be null or empty.")
 
         def sonar = steps.tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
@@ -16,10 +16,10 @@ class CodeQuality implements Serializable {
         steps.withSonarQube('RH-SonarQube') {
             steps.sh """
                 ${sonar}/bin/sonar-runner -e \\
-                -Dsonar.sources=${sonarSourcePath} \\
+                -Dsonar.sources=src/main/java/ \\
                 -Dsonar.projectKey=org.rh:${productName} \\
                 -Dsonar.projectName=${productName} \\
-                -Dsonar.coverage.jacoco.xmlReportPaths=${jacocoReportPath} \\
+                -Dsonar.coverage.jacoco.xmlReportPaths=test/test.xml \\
                 -Dsonar.projectVersion=${appVersion} \\
                 -Dsonar.sourceEncoding=UTF-8 \\
     	          -Dsonar.java.binaries=.
