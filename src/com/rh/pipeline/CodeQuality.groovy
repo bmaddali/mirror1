@@ -8,7 +8,7 @@ class CodeQuality implements Serializable {
         this.steps = steps
     }
 
-    def scanWithSonar(sonarSourcePath, productName, jacocoReportPath = null, appVersion) {
+    def scanWithSonar(String sonarSourcePath,String productName, String jacocoReportPath = "None", String appVersion) {
         //if (!sonarSourcePath) && (!productName) && (!appVersion) throw new IllegalArgumentException("Error Missing Parameters, it can not be null or empty.")
 
         def sonar = steps.tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
