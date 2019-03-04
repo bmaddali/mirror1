@@ -8,10 +8,10 @@ class AppBuilds implements Serializable {
         this.steps = steps
     }
 
-    def buildWithMaven(mvnConfigFileID, mvnArgs){
-        if (!mvnConfigFileID) throw new IllegalArgumentException("The parameter 'mvnConfigFileID' can not be null or empty.")
+    def buildWithMaven(mvnArgs){
+        if (!mvnArgs) throw new IllegalArgumentException("Maven Build Arguments can not be null or empty.")
         def mvn = steps.tool 'maven'
-        steps.withMaven(maven: 'maven', mavenSettingsConfig: mvnConfigFileID){
+        steps.withMaven(maven: 'maven', mavenSettingsConfig: 'GlobalMavenSettings', options: [junitPublisher(disabled: false), artifactsPublisher(disabled: false), jacocoPublisher(disabled: false)], tempBinDir: '') {
             steps.sh "${mvn}/bin/mvn -o ${mvnArgs}"
         }
     }
