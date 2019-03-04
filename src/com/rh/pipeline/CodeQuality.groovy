@@ -14,7 +14,7 @@ class CodeQuality implements Serializable {
         def sonar = steps.tool name: 'Sonar'
 
         steps.withSonarQubeEnv('RH-SonarQube') {
-            steps.sh "${sonar}/bin/sonar-runner -e -Dsonar.sources=src/main/java/ -Dsonar.projectKey=org.rh:${productName} -Dsonar.projectName=${productName} -Dsonar.coverage.jacoco.xmlReportPaths=${jacocoReportPath} -Dsonar.projectVersion=${appVersion} -Dsonar.sourceEncoding=UTF-8 -Dsonar.java.binaries=."
+            steps.sh "${Sonar}/bin/sonar-runner -e -Dsonar.sources=src/main/java/ -Dsonar.projectKey=org.rh:${productName} -Dsonar.projectName=${productName} -Dsonar.coverage.jacoco.xmlReportPaths=${jacocoReportPath} -Dsonar.projectVersion=${appVersion} -Dsonar.sourceEncoding=UTF-8 -Dsonar.java.binaries=."
         }
     }
 }
