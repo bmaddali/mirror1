@@ -19,7 +19,7 @@ class Docker implements Serializable {
       //if (!appGroup) && (!appName) && (!imageTag)  throw new IllegalArgumentException("Error Missing Parameters, it can not be null or empty.")
 
         try {
-            steps.docker.withRegistry(dockerRegistry, registryUser) {
+            steps.docker.withRegistry("https://${dockerRegistry}", registryUser) {
                 def appImagePath = dockerRegistry + '/' + appGroup + '/' + appName + ':' + imageTag
                 def buildImage = docker.build(appImagePath)
                 buildImage.push(appImagePath)
