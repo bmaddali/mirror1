@@ -3,7 +3,7 @@ package com.rh.pipeline
 class Docker {
 
     private String dockerRegistry = 'rhartifactory-rhapsody-docker-local.jfrog.io'
-    private String registryUser = '4711f1eb-3218-4ce0-9b5c-0f9f43641469' //artifactory credentials ID
+    private String registryUser = 'artifactory-rhapsody' //artifactory credentials ID
     private String appGroup //domain
     private String appName // miracledate
     private String imageTag //IMAGE_VERSION
@@ -19,7 +19,7 @@ class Docker {
                 buildImage.push(appImagePath)
             }
         } catch (e) {
-            echo "Failed to Build Docker Image : ${e}"
+            // echo "Failed to Build Docker Image : ${e}"
             throw e
         }
     }
