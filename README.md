@@ -1,3 +1,5 @@
+# Archiving this repo use jenkins-rhapsody-libraries repo instead
+
 # jenkins-shared-libraries
 Jenkins Shared Libraries for use with Jenkinsfile
 
